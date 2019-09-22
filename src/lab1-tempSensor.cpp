@@ -3,7 +3,7 @@
 /******************************************************/
 
 #include "application.h"
-#line 1 "/Users/frank/OneDrive/UNH/ELEC-6671_4501_IOT/particle/lab1-tempSensor/src/lab1-tempSensor.ino"
+#line 1 "/Users/frank/Documents/lab1-tempsensor/src/lab1-tempSensor.ino"
 /*
  * Project lab1-tempSensor
  * Description:
@@ -15,9 +15,7 @@ void setup();
 void loop();
 void getRawSensorData(void);
 void displayRawSensorData(void);
-float readSensorTempC(void);
-void displaySensorTemp(float tempCelsius);
-#line 8 "/Users/frank/OneDrive/UNH/ELEC-6671_4501_IOT/particle/lab1-tempSensor/src/lab1-tempSensor.ino"
+#line 8 "/Users/frank/Documents/lab1-tempsensor/src/lab1-tempSensor.ino"
 SYSTEM_MODE(SEMI_AUTOMATIC);
 
 #include <adxl362.h>
@@ -50,10 +48,8 @@ void loop()
     // Read Sensor Data 
     getRawSensorData();
 
-    //displayRawSensorData();
-
-    displaySensorTemp(readSensorTempC());
-    
+    // Display to Serial Monitor
+    displayRawSensorData();
 }
 
 void getRawSensorData(void)
@@ -77,33 +73,4 @@ void displayRawSensorData(void)
     Serial.println(Temperature);
 
     delay(100);
-}
-
-
-float readSensorTempC(void)
-{
-    unsigned char rawTempData[2] = {0, 0};
-    short         signedTemp = 0;
-    float         tempCelsius = 0;
-
-    rawTempData[0] = (char)Temperature;
-
-    rawTempData[1] = (char)(Temperature >> 8);
-    
-    signedTemp = (short)(rawTempData[1] << 8) + rawTempData[0];
-    
-    tempCelsius = (float)signedTemp * 0.065;
-
-    return tempCelsius;
-}
-
-void displaySensorTemp(float tempCelsius)
-{
-    static char messageBuffer[255];
-
-    snprintf(messageBuffer, sizeof(messageBuffer), "Temperature %f C\n", tempCelsius);
-
-    Serial.print(messageBuffer);
-
-    delay(1000);
 }
