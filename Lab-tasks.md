@@ -6,7 +6,7 @@ Connect your Particle Argon board to the ADXL362 accesory board
 
 After cloning project https://github.com/iot-newhaven/lab1-tempsensor.git compile local application and flash local to the board.
 
-# Task 3
+# Task 2b
 
 Add the following functions to `lab1-tempSensor.ino` file
 
