@@ -38,7 +38,9 @@ void loop()
     getRawSensorData();
 
     // Display to Serial Monitor
-    displayRawSensorData();
+    //displayRawSensorData();
+
+    displaySensorTemp(readSensorTempC());
 }
 
 void getRawSensorData(void)
@@ -62,4 +64,32 @@ void displayRawSensorData(void)
     Serial.println(Temperature);
 
     delay(100);
+}
+
+float readSensorTempC(void)
+{
+    unsigned char rawTempData[2] = {0, 0};
+    short         signedTemp = 0;
+    float         tempCelsius = 0;
+
+    rawTempData[0] = (char)Temperature;
+
+    rawTempData[1] = (char)(Temperature >> 8);
+    
+    signedTemp = (short)(rawTempData[1] << 8) + rawTempData[0];
+    
+    tempCelsius = (float)signedTemp * 0.065;
+
+    return tempCelsius;
+}
+
+void displaySensorTemp(float tempCelsius)
+{
+    static char messageBuffer[255];
+
+    snprintf(messageBuffer, sizeof(messageBuffer), "Temperature %f C\n", tempCelsius);
+
+    Serial.print(messageBuffer);
+
+    delay(1000);
 }
