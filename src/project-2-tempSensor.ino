@@ -11,9 +11,7 @@ SYSTEM_MODE(SEMI_AUTOMATIC);
 
 ADXL362 sensor;
 
-int16_t temp;
-
-int16_t XValue, YValue, ZValue, Temperature;
+int16_t x_value, y_value, z_value, raw_temperature;
 
 int spi_cs_pin = D5;
 
@@ -46,22 +44,22 @@ void loop()
 void getRawSensorData(void)
 {
     // read all three axis in burst to ensure all measurements correspond to same sample time
-    sensor.readXYZTData(XValue, YValue, ZValue, Temperature);
+    sensor.readXYZTData(x_value, y_value, z_value, raw_temperature);
 }
 
 void displayRawSensorData(void)
 {
     Serial.print("XVALUE=");
-    Serial.print(XValue);
+    Serial.print(x_value);
     
     Serial.print("\tYVALUE=");
-    Serial.print(YValue);
+    Serial.print(y_value);
     
     Serial.print("\tZVALUE=");
-    Serial.print(ZValue);
+    Serial.print(z_value);
     
     Serial.print("\tTEMPERATURE=");
-    Serial.println(Temperature);
+    Serial.println(raw_temperature);
 
     delay(1000);
 }
