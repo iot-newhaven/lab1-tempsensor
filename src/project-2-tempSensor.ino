@@ -1,5 +1,5 @@
 /*
- * Project lab1-tempSensor
+ * Project project-2-tempSensor
  * Description:
  * Author:
  * Date:
@@ -15,6 +15,8 @@ int16_t temp;
 
 int16_t XValue, YValue, ZValue, Temperature;
 
+int spi_cs_pin = D5;
+
 // setup() runs once, when the device is first turned on.
 void setup()
 {
@@ -22,11 +24,11 @@ void setup()
 
     Serial.begin(115200);
 
-    sensor.begin(SS); // Setup SPI protocol, issue device soft reset
+    sensor.begin(spi_cs_pin); // Setup SPI protocol, issue device soft reset
 
     sensor.beginMeasure(); // Switch ADXL362 to measure mode
 
-    Serial.println("Lab1: temp sensor");
+    Serial.println("Project 2: Temperature sensor");
 }
 
 // loop() runs over and over again, as quickly as it can execute.
@@ -61,5 +63,5 @@ void displayRawSensorData(void)
     Serial.print("\tTEMPERATURE=");
     Serial.println(Temperature);
 
-    delay(100);
+    delay(1000);
 }

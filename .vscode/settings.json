@@ -12,6 +12,6 @@
         "initializer_list": "cpp"
     },
     "particle.targetDevice": "iot-professor",
-    "particle.firmwareVersion": "1.4.0-rc.1",
+    "particle.firmwareVersion": "1.5.2",
     "particle.targetPlatform": "argon"
 }
