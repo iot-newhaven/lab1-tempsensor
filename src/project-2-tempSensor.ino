@@ -39,6 +39,8 @@ void loop()
 
     // Display to Serial Monitor
     displayRawSensorData();
+
+    delay(1000);
 }
 
 void getRawSensorData(void)
@@ -60,6 +62,4 @@ void displayRawSensorData(void)
     
     Serial.print("\tTEMPERATURE=");
     Serial.println(raw_temperature);
-
-    delay(1000);
 }
