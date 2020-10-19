@@ -41,6 +41,8 @@ void loop()
     //displayRawSensorData();
 
     displaySensorTemp(readSensorTempC());
+
+    delay(1000);
 }
 
 void getRawSensorData(void)
@@ -62,8 +64,6 @@ void displayRawSensorData(void)
     
     Serial.print("\tTEMPERATURE=");
     Serial.println(raw_temperature);
-
-    delay(1000);
 }
 
 float readSensorTempC(void)
@@ -82,6 +82,4 @@ void displaySensorTemp(float temperature_C)
     snprintf(messageBuffer, sizeof(messageBuffer), "Temperature %f C\n", temperature_C);
 
     Serial.print(messageBuffer);
-
-    delay(1000);
 }
